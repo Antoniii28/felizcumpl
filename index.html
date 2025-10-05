@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+        
+        :root {
+            --color-primary: #ff6b6b;
+            --color-secondary: #feca57;
+            --color-accent: #5f27cd;
+            --color-text: #ffffff;
+            --color-bg: #0a0a1a;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: var(--color-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 30%, rgba(94, 39, 205, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(254, 202, 87, 0.1) 0%, transparent 30%);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: rgba(10, 10, 26, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 100;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--color-secondary);
+            text-shadow: 0 0 15px rgba(254, 202, 87, 0.7);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            transform: translateZ(30px);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(254, 202, 87, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(254, 202, 87, 1), 0 0 30px rgba(255, 107, 107, 0.7);
+            }
+        }
+        
+        input {
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            width: 70%;
+            border: 2px solid var(--color-accent);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+            text-align: center;
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(95, 39, 205, 0.3);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 1rem;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(95, 39, 205, 0.4);
+        }
+        
+        button:hover::before {
+            opacity: 1;
+        }
+        
+        button:active {
+            transform: translateY(2px);
+        }
+        
+        #animationContainer {
+            margin: 2rem 0;
+            display: none;
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            min-height: 200px;
+            position: relative;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
+            transform: translateZ(20px);
+        }
+        
+        .birthday-image {
+            display: none;
+            margin: 2rem auto;
+            max-width: 400px;
+            animation: 
+                float 3s infinite ease-in-out,
+                pulse 2s infinite;
+            transform: translateZ(30px);
+            filter: drop-shadow(0 0 15px rgba(254, 202, 87, 0.7));
+        }
+        
+        .birthday-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid var(--color-secondary);
+        }
+        
+        .heart {
+            color: var(--color-primary);
+            font-size: 3rem;
+            display: inline-block;
+            animation: 
+                beat 0.8s infinite alternate, 
+                float 3s infinite ease-in-out,
+                pulse 2s infinite;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+            margin-left: 0.5rem;
+        }
+        
+        @keyframes beat {
+            to {
+                transform: scale(1.4);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+            100% {
+                filter: brightness(1);
+            }
+        }
+        
+        .birthday-cake {
+            font-size: 5rem;
+            animation: 
+                cake-bounce 2s infinite, 
+                rotate 10s infinite linear;
+            display: none;
+            margin: 2rem 0;
+            text-shadow: 0 0 20px rgba(254, 202, 87, 0.8);
+            transform: translateZ(40px);
+        }
+        
+        @keyframes cake-bounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+        
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .music-control i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        /* Efectos especiales */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            animation: float-up linear infinite;
+        }
+        
+        @keyframes float-up {
+            to {
+                transform: translateY(-100vh);
+            }
+        }
+        
+        /* Animación 3D para el contenedor */
+        @keyframes container-float {
+            0%, 100% {
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+            }
+            50% {
+                transform: translateY(0) rotateX(0deg) rotateY(-2deg);
+            }
+            75% {
+                transform: translateY(-5px) rotateX(-2deg) rotateY(0deg);
+            }
+        }
+        
+        .container-floating {
+            animation: container-float 8s ease-in-out infinite;
+        }
+        
+        /* Efecto de neón para el texto */
+        .neon-text {
+            animation: neon-flicker 1.5s infinite alternate;
+        }
+        
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow:
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px var(--color-primary),
+                    0 0 20px var(--color-primary),
+                    0 0 25px var(--color-primary),
+                    0 0 30px var(--color-primary),
+                    0 0 35px var(--color-primary);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        
+        /* Estilos para el modal de clave especial */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: rgba(10, 10, 26, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        .modal h2 {
+            color: var(--color-secondary);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .modal-input {
+            margin: 1rem 0;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-buttons button {
+            padding: 0.8rem 1.5rem;
+            margin: 0;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 0.5rem;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Canvas para efectos especiales -->
+    <canvas id="fireworksCanvas"></canvas>
+    <canvas id="particlesCanvas"></canvas>
+    
+    <!-- Control de música -->
+    <div class="music-control" id="musicControl" title="Reproducir/Pausar música">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="container container-floating" id="mainContainer">
+        <h1 class="neon-text">Escribe tu nombre</h1>
+        <input type="text" id="nameInput" placeholder="¿Cómo te llamas?">
+        <br>
+        <button id="continueButton">
+            <span class="button-text">¡Celebrar!</span>
+            <span class="button-sparkles"></span>
+        </button>
+        
+        <div id="animationContainer"></div>
+        <div id="imageContainer" class="birthday-image">
+            <img src="Felicidades.png" alt="Felicitaciones">
+        </div>
+        <div id="cakeContainer" class="birthday-cake">😊🎊🎉</div>
+    </div>
+    
+    <!-- Modal para la clave especial -->
+    <div class="modal" id="specialKeyModal">
+        <div class="modal-content">
+            <h2>¡Tienes un regalo especial!</h2>
+            <p id="specialUserMessage"></p>
+            <div class="modal-input">
+                <input type="text" id="specialKeyInput" placeholder="Introduce la clave especial">
+                <p class="error-message" id="keyError">Clave incorrecta. Intenta de nuevo.</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="submitKeyButton">Enviar</button>
+                <button id="cancelKeyButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio para la canción -->
+    <audio id="birthdayAudio" loop>
+       <source src="cumpleaños.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <!-- Confeti y otros elementos generados dinámicamente -->
+    <div id="dynamicElements"></div>
+    
+    <script>
+        // Constantes y variables globales
+        const SPECIAL_KEY = "YeniUchiha";
+        const SPECIAL_NAME = "yeni";
+        let audioContext, audioElement, audioSource, analyser, dataArray;
+        let isPlaying = false;
+        let animationIntervals = [];
+        
+        // Elementos del DOM
+        const elements = {
+            nameInput: document.getElementById('nameInput'),
+            continueButton: document.getElementById('continueButton'),
+            animationContainer: document.getElementById('animationContainer'),
+            imageContainer: document.getElementById('imageContainer'),
+            cakeContainer: document.getElementById('cakeContainer'),
+            musicControl: document.getElementById('musicControl'),
+            specialKeyModal: document.getElementById('specialKeyModal'),
+            specialKeyInput: document.getElementById('specialKeyInput'),
+            keyError: document.getElementById('keyError'),
+            specialUserMessage: document.getElementById('specialUserMessage'),
+            submitKeyButton: document.getElementById('submitKeyButton'),
+            cancelKeyButton: document.getElementById('cancelKeyButton'),
+            fireworksCanvas: document.getElementById('fireworksCanvas'),
+            particlesCanvas: document.getElementById('particlesCanvas'),
+            dynamicElements: document.getElementById('dynamicElements')
+        };
+        
+        // Inicialización cuando el DOM está listo
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            setupCanvases();
+            setupAudio();
+            setupEventListeners();
+            createFloatingParticles();
+        }
+        
+        function setupCanvases() {
+            elements.fireworksCanvas.width = window.innerWidth;
+            elements.fireworksCanvas.height = window.innerHeight;
+            elements.fireworksCanvas.style.position = 'fixed';
+            elements.fireworksCanvas.style.top = '0';
+            elements.fireworksCanvas.style.left = '0';
+            elements.fireworksCanvas.style.zIndex = '1';
+            elements.fireworksCanvas.style.pointerEvents = 'none';
+            
+            elements.particlesCanvas.width = window.innerWidth;
+            elements.particlesCanvas.height = window.innerHeight;
+            elements.particlesCanvas.style.position = 'fixed';
+            elements.particlesCanvas.style.top = '0';
+            elements.particlesCanvas.style.left = '0';
+            elements.particlesCanvas.style.zIndex = '2';
+            elements.particlesCanvas.style.pointerEvents = 'none';
+        }
+        
+        function setupAudio() {
+            audioElement = document.getElementById('birthdayAudio');
+            audioElement.muted = true;
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                audioSource = audioContext.createMediaElementSource(audioElement);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                audioSource.connect(analyser);
+                analyser.connect(audioContext.destination);
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+            } catch (e) {
+                console.error('Web Audio API no soportada:', e);
+            }
+            
+            document.body.addEventListener('click', handleFirstInteraction, { once: true });
+        }
+        
+        function handleFirstInteraction() {
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            audioElement.muted = false;
+        }
+        
+        function setupEventListeners() {
+            elements.musicControl.addEventListener('click', toggleMusic);
+            elements.continueButton.addEventListener('click', startCelebration);
+            elements.submitKeyButton.addEventListener('click', checkSpecialKey);
+            elements.cancelKeyButton.addEventListener('click', closeSpecialKeyModal);
+            elements.specialKeyInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') checkSpecialKey();
+            });
+            
+            // Efecto de sparkle en el botón
+            elements.continueButton.addEventListener('mousemove', createButtonSparkles);
+        }
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                audioElement.pause();
+                elements.musicControl.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                audioElement.play()
+                    .then(() => {
+                        elements.musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                        if (analyser) visualizeAudio();
+                    })
+                    .catch(e => console.error("Error al reproducir audio:", e));
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function visualizeAudio() {
+            const ctx = elements.particlesCanvas.getContext('2d');
+            
+            function draw() {
+                requestAnimationFrame(draw);
+                analyser.getByteFrequencyData(dataArray);
+                
+                ctx.clearRect(0, 0, elements.particlesCanvas.width, elements.particlesCanvas.height);
+                
+                const barWidth = (elements.particlesCanvas.width / dataArray.length) * 2.5;
+                let x = 0;
+                
+                for (let i = 0; i < dataArray.length; i++) {
+                    const barHeight = dataArray[i] / 2;
+                    const hue = i * 360 / dataArray.length;
+                    
+                    ctx.fillStyle = `hsla(${hue}, 100%, 50%, 0.5)`;
+                    ctx.fillRect(x, elements.particlesCanvas.height - barHeight, barWidth, barHeight);
+                    x += barWidth + 1;
+                }
+                
+                if (Math.random() < 0.3) {
+                    createAudioParticle();
+                }
+            }
+            
+            draw();
+        }
+        
+        function createAudioParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 10 + 5;
+            const hue = Math.random() * 360;
+            const audioValue = dataArray[Math.floor(Math.random() * dataArray.length)];
+            const duration = 3 + (audioValue / 255) * 5;
+            
+            Object.assign(particle.style, {
+                width: `${size}px`,
+                height: `${size}px`,
+                background: `hsla(${hue}, 100%, 50%, 0.7)`,
+                borderRadius: '50%',
+                left: `${Math.random() * window.innerWidth}px`,
+                bottom: '0',
+                boxShadow: `0 0 ${size}px ${size/2}px hsla(${hue}, 100%, 50%, 0.3)`,
+                animation: `float-up ${duration}s linear ${Math.random() * 2}s forwards`
+            });
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), duration * 1000);
+        }
+        
+        function createButtonSparkles(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const sparkle = document.createElement('span');
+            Object.assign(sparkle.style, {
+                position: 'absolute',
+                left: `${x}px`,
+                top: `${y}px`,
+                width: '10px',
+                height: '10px',
+                background: 'white',
+                borderRadius: '50%',
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none',
+                opacity: '0.8',
+                boxShadow: '0 0 10px 2px white',
+                animation: 'sparkle-fade 1s forwards'
+            });
+            
+            e.currentTarget.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+        
+        function createFloatingParticles() {
+            const colors = ['#ff6b6b', '#feca57', '#5f27cd', '#1dd1a1', '#ff9ff3'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    const size = Math.random() * 15 + 5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const duration = Math.random() * 15 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    Object.assign(particle.style, {
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        background: color,
+                        borderRadius: '50%',
+                        left: `${Math.random() * 100}vw`,
+                        bottom: '-20px',
+                        opacity: '0.6',
+                        boxShadow: `0 0 ${size}px ${size/2}px ${color}40`,
+                        animation: `float-up ${duration}s linear ${delay}s infinite`
+                    });
+                    
+                    document.body.appendChild(particle);
+                }, i * 300);
+            }
+        }
+        
+        function showSpecialKeyModal(name) {
+            elements.specialUserMessage.textContent = `${name}, tienes un regalo especial. Introduce la clave para continuar.`;
+            elements.specialKeyModal.style.display = 'flex';
+            elements.specialKeyInput.focus();
+        }
+        
+        function closeSpecialKeyModal() {
+            elements.specialKeyModal.style.display = 'none';
+            elements.specialKeyInput.value = '';
+            elements.keyError.style.display = 'none';
+        }
+        
+        function checkSpecialKey() {
+            if (elements.specialKeyInput.value.trim() === SPECIAL_KEY) {
+                window.location.href = 'cumple.html';
+            } else {
+                elements.specialKeyInput.style.animation = 'shake 0.5s';
+                elements.keyError.style.display = 'block';
+                setTimeout(() => {
+                    elements.specialKeyInput.style.animation = '';
+                }, 500);
+            }
+        }
+        
+        function startCelebration() {
+            const name = elements.nameInput.value.trim();
+            
+            if (!name) {
+                showInputError();
+                return;
+            }
+            
+            if (name.toLowerCase() === SPECIAL_NAME) {
+                showSpecialKeyModal(name);
+                return;
+            }
+            
+            hideInitialElements();
+            elements.animationContainer.style.display = 'block';
+            toggleMusic();
+            
+            typeWriterAnimation(name);
+        }
+        
+        function showInputError() {
+            elements.nameInput.style.animation = 'shake 0.5s';
+            elements.nameInput.focus();
+            setTimeout(() => {
+                elements.nameInput.style.animation = '';
+            }, 500);
+        }
+        
+        function hideInitialElements() {
+            elements.nameInput.style.display = 'none';
+            elements.continueButton.style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+        }
+        
+        function typeWriterAnimation(name) {
+            let i = 0;
+            const message = `¡Feliz cumpleaños, ${name}!`;
+            const heart = '<span class="heart">❤</span>';
+            
+            function typeWriter() {
+                if (i < message.length) {
+                    elements.animationContainer.innerHTML = message.substring(0, i+1);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    elements.animationContainer.innerHTML += ' ' + heart;
+                    showCakeAndEffects();
+                }
+            }
+            
+            typeWriter();
+        }
+        
+        function showCakeAndEffects() {
+            elements.cakeContainer.style.display = 'block';
+            elements.imageContainer.style.display = 'block';
+            createConfettiStorm();
+            createBalloonBurst();
+            createFireworkShow();
+            
+            // Limpiar intervalos anteriores si existen
+            clearAllIntervals();
+            
+            animationIntervals.push(
+                setInterval(createFloatingHearts, 1000),
+                setInterval(createRandomSparkles, 500)
+            );
+        }
+        
+        function clearAllIntervals() {
+            animationIntervals.forEach(interval => clearInterval(interval));
+            animationIntervals = [];
+        }
+        
+        function createConfettiStorm() {
+            const colors = ['#ff6b6b', '#feca57', '#5f27cd', '#1dd1a1', '#ff9ff3', '#f368e0'];
+            
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'particle';
+                    
+                    const size = Math.random() * 12 + 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const duration = Math.random() * 3 + 2;
+                    const delay = Math.random() * 2;
+                    
+                    Object.assign(confetti.style, {
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        background: color,
+                        left: `${Math.random() * 100}vw`,
+                        top: '-10px',
+                        borderRadius: Math.random() > 0.5 ? '50%' : '0',
+                        transform: `rotate(${Math.random() * 360}deg)`,
+                        animation: `float-up ${duration}s linear ${delay}s forwards`
+                    });
+                    
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), (duration + delay) * 1000);
+                }, i * 20);
+            }
+        }
+        
+        function createBalloonBurst() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'particle';
+                    balloon.innerHTML = '🎈';
+                    
+                    const size = Math.random() * 30 + 20;
+                    const duration = Math.random() * 5 + 3;
+                    const delay = Math.random() * 2;
+                    const x = Math.random() * 100;
+                    
+                    Object.assign(balloon.style, {
+                        fontSize: `${size}px`,
+                        left: `${x}vw`,
+                        bottom: '-50px',
+                        animation: `float-up ${duration}s ease-in ${delay}s forwards`
+                    });
+                    
+                    elements.dynamicElements.appendChild(balloon);
+                    setTimeout(() => balloon.remove(), (duration + delay) * 1000);
+                }, i * 200);
+            }
+        }
+        
+        function createFireworkShow() {
+            const ctx = elements.fireworksCanvas.getContext('2d');
+            
+            class Firework {
+                constructor() {
+                    this.reset();
+                    this.particles = [];
+                }
+                
+                reset() {
+                    this.x = Math.random() * elements.fireworksCanvas.width;
+                    this.y = elements.fireworksCanvas.height;
+                    this.targetY = Math.random() * elements.fireworksCanvas.height / 2;
+                    this.speed = Math.random() * 3 + 2;
+                    this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    this.particles = [];
+                    this.exploded = false;
+                }
+                
+                explode() {
+                    const particleCount = 100 + Math.floor(Math.random() * 50);
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        this.particles.push({
+                            x: this.x,
+                            y: this.y,
+                            color: this.color,
+                            velocity: {
+                                x: (Math.random() - 0.5) * 8,
+                                y: (Math.random() - 0.5) * 8
+                            },
+                            alpha: 1,
+                            decay: Math.random() * 0.015 + 0.01,
+                            size: Math.random() * 3 + 1
+                        });
+                    }
+                    
+                    this.exploded = true;
+                }
+                
+                update() {
+                    if (!this.exploded) {
+                        this.y -= this.speed;
+                        
+                        ctx.fillStyle = this.color;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        if (this.y <= this.targetY) {
+                            this.explode();
+                        }
+                        return true;
+                    } else {
+                        for (let i = 0; i < this.particles.length; i++) {
+                            const p = this.particles[i];
+                            
+                            p.velocity.y += 0.05;
+                            p.x += p.velocity.x;
+                            p.y += p.velocity.y;
+                            p.alpha -= p.decay;
+                            
+                            if (p.alpha <= 0) {
+                                this.particles.splice(i, 1);
+                                i--;
+                            }
+                        }
+                        
+                        if (this.particles.length === 0) {
+                            this.reset();
+                            return false;
+                        }
+                        return true;
+                    }
+                }
+                
+                draw() {
+                    if (!this.exploded) return;
+                    
+                    ctx.save();
+                    
+                    for (const p of this.particles) {
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    
+                    ctx.restore();
+                }
+            }
+            
+            const fireworks = [];
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => fireworks.push(new Firework()), i * 800);
+            }
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                ctx.fillStyle = 'rgba(10, 10, 26, 0.2)';
+                ctx.fillRect(0, 0, elements.fireworksCanvas.width, elements.fireworksCanvas.height);
+                
+                for (let i = 0; i < fireworks.length; i++) {
+                    if (fireworks[i].update()) {
+                        fireworks[i].draw();
+                    } else {
+                        fireworks.splice(i, 1);
+                        i--;
+                    }
+                }
+                
+                if (Math.random() < 0.05 && fireworks.length < 15) {
+                    fireworks.push(new Firework());
+                }
+            }
+            
+            animate();
+        }
+        
+        function createFloatingHearts() {
+            const hearts = ['❤', '🧡', '💛', '💚', '💙', '💜', '🤍', '💖'];
+            const heart = document.createElement('div');
+            heart.className = 'particle heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            const size = Math.random() * 30 + 20;
+            const duration = Math.random() * 10 + 5;
+            const x = Math.random() * 100;
+            
+            Object.assign(heart.style, {
+                fontSize: `${size}px`,
+                left: `${x}vw`,
+                bottom: '-50px',
+                animation: `float-up ${duration}s linear forwards`,
+                color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+                textShadow: `0 0 ${size/2}px currentColor`
+            });
+            
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        
+        function createRandomSparkles() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'particle';
+            
+            const size = Math.random() * 10 + 5;
+            const duration = Math.random() * 1 + 0.5;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            Object.assign(sparkle.style, {
+                width: `${size}px`,
+                height: `${size}px`,
+                background: 'white',
+                borderRadius: '50%',
+                left: `${x}vw`,
+                top: `${y}vh`,
+                boxShadow: '0 0 10px 2px white',
+                animation: `sparkle-fade ${duration}s forwards`,
+                opacity: '0'
+            });
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), duration * 1000);
+        }
+        
+        // ===== PROTECCIÓN CONTRA ACCESO AL CÓDIGO FUENTE =====
+        document.addEventListener("keydown", e => {
+            // Bloquear Ctrl+U
+            if (e.ctrlKey && e.key === "u") {
+                alert("🙅‍♂️ Ver código fuente no permitido");
+                e.preventDefault();
+            }
+            // Bloquear F12 y Ctrl+Shift+I
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                e.preventDefault();
+                alert("Acceso restringido");
+            }
+        });
+
+        // Prevenir clic derecho
+        document.addEventListener("contextmenu", e => {
+            e.preventDefault();
+            alert("🙅‍♂️ Menú contextual deshabilitado");
+        });
+
+        // Bloquear arrastrar imágenes (opcional)
+        document.addEventListener("dragstart", e => {
+            if (e.target.tagName === "IMG") {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
